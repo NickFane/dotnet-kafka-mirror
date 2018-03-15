@@ -19,7 +19,7 @@ namespace DotnetKafkaMirror.Kafka
             _consumer = new Consumer<string, string>(config.SourceKafkaConfig, new StringDeserializer(Encoding.UTF8),
                 new StringDeserializer(Encoding.UTF8));
 
-            _consumer.Subscribe(config.SourceTopics);
+            _consumer.Subscribe(config.SourceTopics.Split(','));
             _consumer.OnPartitionsAssigned += ConsumerOnOnPartitionsAssigned;
             _consumer.OnPartitionsRevoked += ConsumerOnOnPartitionsRevoked;
 
